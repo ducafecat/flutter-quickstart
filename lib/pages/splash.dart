@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quickstart_learn/common/index.dart';
 import 'package:flutter_quickstart_learn/pages/welcome.dart';
 
-/// Splash 页
+/// SPLASH PAGE
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
@@ -12,30 +14,35 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   int number = 3;
+  late Timer _timer; // 使用 Timer 来控制倒计时
 
   // 倒计时
-  Future<void> _countdown() async {
-    const int duration = 3;
-    for (int i = 0; i < duration; i++) {
-      await Future.delayed(const Duration(seconds: 1), () {
-        if (mounted == true) {
-          setState(() {
-            number--;
-          });
-        }
-      });
-      // 倒计时结束, 进入 welcome
-      if (number == 0) {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const WelcomePage()));
+  void _countdown() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mounted && number > 0) {
+        setState(() {
+          number--;
+        });
       }
-    }
+      // 倒计时结束, 进入 Welcome 页面
+      if (number == 0) {
+        timer.cancel(); // 取消计时器
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const WelcomePage()));
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
     _countdown();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // 页面销毁时取消计时器
+    super.dispose();
   }
 
   @override

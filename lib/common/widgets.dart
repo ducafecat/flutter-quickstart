@@ -32,12 +32,12 @@ class ButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         // 阴影高度
-        elevation: MaterialStateProperty.all(0),
+        elevation: WidgetStateProperty.all(0),
         // 最小尺寸
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
             Size(widget ?? double.infinity, height ?? double.infinity)),
         // 形状 圆角
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(radius ?? 18),

@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // 账号输入是否有效
-  bool isUserNameValid = false;
+  bool isUserNameValid = false; 
 
   // 登录表单
   Widget _buildForm() {

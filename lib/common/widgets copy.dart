@@ -31,8 +31,8 @@ class ButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          elevation: MaterialStateProperty.all(0),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          elevation: WidgetStateProperty.all(0),
+          minimumSize: WidgetStateProperty.all(Size.zero),
         ),
         child: Text(
           text ?? "",
